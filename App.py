@@ -52,6 +52,15 @@ def update():
         mysql.connection.commit()
         return redirect(url_for('Index'))
 
+@app.route('/delete/<string:id_data>', methods = ['POST','GET'])
+def delete(id_data):
+    flash("Datos eliminados correctamente")
+    cur = mysql.connection.cursor()
+    cur.execute("DELETE FROM contactos WHERE id=%s", (id_data))
+    mysql.connection.commit()
+    return redirect(url_for('Index'))
+
+
 
 
 if __name__ == "__main__":
